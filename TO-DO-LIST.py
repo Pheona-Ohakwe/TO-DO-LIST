@@ -1,7 +1,7 @@
 
 print("To-Do List")
 print(" Menu: "
-      "1. Add a task " " 2. View a task " " 3. Mark a task as complete " " 4. Delete a task " " 5. or Quit ")
+      " Add a task, " " View list, " " Update a task to complete, " " Delete a task, " " Quit ")
 
 complete =[]
 incomplete = []
@@ -13,39 +13,40 @@ def add_task(incomplete):
         print(f"Your to-do list is now updated. See list {incomplete}")
     else:
         print(f"That task is. already on your incomplete list. See list {incomplete}")
+
 def view_task(incomplete, complete):
-       task = input("Which tasks would you like to view on your to do list?")
-       if task == "in completed tasks":
-            print("This is a list of incomplete tasks" [incomplete])
+       task = input("Which tasks would you like to view on your to do list? incomplete or complete ")
+       if task == "incomplete":
+            print("This is a list of incomplete tasks:")
             for task in incomplete:
                 print (task)
-       elif task =="complete tasks":
-            print("This is a list of complete tasks" [complete])
+       elif task =="complete":
+            print("This is a list of complete tasks")
             for task in complete:
                 print(task)
        else:
-            print("Please select between complete or incomplete tasks.")
+            print("Please select between complete or incomplete.")
 
 
 def update_task(incomplete, complete):
-    task = input("To mark a task on your incomplete to-do list as 'complete' enter complete or enter incomplete to return to menu:")
-    if task == "Complete":
-        print(f"Your complete to-do list includes these tasks: {complete}")
+    task = input("To update a task on your incomplete to-do list as updated enter 'update' or enter 'leave' to return to menu:")
+    if task == "update":
+        print(f"Your incomplete to-do list includes these tasks: {incomplete}")
         try:
-            complete= input("What task would you like to add as complete?: ")
-            incomplete.remove(incomplete)
-            complete.append(incomplete)
-            print("This is the new list of completed tasks: {complete}.")
-            print("This is the new list of incomplete tasks: {incomplete}.")
+            completed_task= input("What task would you like to update?: ")
+            incomplete.remove(completed_task)
+            complete.append(completed_task)
+            print("This is the new list of completed tasks: {completed_task}")
+            print("This is the new list of incomplete tasks: {incomplete}")
         except ValueError:
             print("Your to-do-list does not contain that task!")
-            option_to_add = input("Would you like to add to it to your completed tasks? Enter yes  or no")
+            option_to_add = input("Would you like to add to it to your completed tasks? Enter: yes  or no ")
             if option_to_add == "yes":
-                complete.append(complete)
-                print(f"Task added. Updated list: {complete}.")
+                complete.append(completed_task)
+                print(f"Task added. Updated list: {completed_task}.")
             elif option_to_add == "no":
                 print(f"No changes made. List: {complete}")
-    elif option_to_add == "No":
+    elif task == "leave":
         print("No changes made.")
     else:
         print("Please enter a valid response. Enter complete or incomplete." )
